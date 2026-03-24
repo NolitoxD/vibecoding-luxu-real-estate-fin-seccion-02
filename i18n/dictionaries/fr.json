@@ -4,7 +4,9 @@
     "buy": "Acheter",
     "rent": "Louer",
     "sell": "Vendre",
-    "saved": "Sauvegardés"
+    "saved": "Sauvegardés",
+    "signIn": "Se Connecter",
+    "signOut": "Déconnexion"
   },
   "hero": {
     "title_base": "Trouvez votre ",

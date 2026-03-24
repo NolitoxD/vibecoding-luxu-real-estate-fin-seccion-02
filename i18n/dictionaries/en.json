@@ -4,7 +4,9 @@
     "buy": "Buy",
     "rent": "Rent",
     "sell": "Sell",
-    "saved": "Saved Homes"
+    "saved": "Saved Homes",
+    "signIn": "Sign In",
+    "signOut": "Sign Out"
   },
   "hero": {
     "title_base": "Find your ",

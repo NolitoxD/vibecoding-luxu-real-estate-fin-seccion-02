@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Schedule Visit - LuxeEstate</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#006655",
+                        "primary-dark": "#004d40", 
+                        "primary-light": "#e6f0ee", 
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0f2320",
+                        "nordic": "#19322F",
+                        "mosque": "#006655",
+                        "clearday": "#EEF6F6"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply font-display text-nordic;
+            }
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+    </style>
+</head>
+<body class="bg-clearday dark:bg-background-dark min-h-screen flex flex-col antialiased selection:bg-mosque/20 selection:text-mosque">
+<nav class="sticky top-0 z-50 w-full bg-clearday border-b border-mosque/10 px-6 py-4">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="h-8 w-8 rounded bg-mosque flex items-center justify-center text-white font-bold text-lg">L</div>
+<span class="font-bold tracking-tight text-xl text-nordic uppercase">LuxeEstate</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-nordic font-medium hover:text-mosque transition-colors relative py-1" href="#">
+                Buy
+            </a>
+<a class="text-nordic font-medium hover:text-mosque transition-colors relative py-1" href="#">
+                Rent
+            </a>
+<a class="text-nordic font-medium hover:text-mosque transition-colors relative py-1" href="#">
+                Sell
+            </a>
+<a class="text-nordic font-medium hover:text-mosque transition-colors relative py-1" href="#">
+                Saved Homes
+                <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-mosque"></span>
+</a>
+</div>
+<div class="flex items-center gap-5">
+<button class="text-nordic hover:text-mosque transition-colors">
+<span class="material-symbols-outlined text-[22px]">search</span>
+</button>
+<button class="text-nordic hover:text-mosque transition-colors relative">
+<span class="material-symbols-outlined text-[22px]">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full border-2 border-clearday"></span>
+</button>
+<button class="flex items-center gap-2 ml-2">
+<div class="w-8 h-8 rounded-full bg-mosque/10 flex items-center justify-center overflow-hidden border border-mosque/20">
+<span class="material-symbols-outlined text-mosque text-[20px]">person</span>
+</div>
+</button>
+</div>
+</div>
+</nav>
+<main class="flex-grow flex flex-col items-center py-8 px-4 md:px-8">
+<div class="w-full max-w-7xl mb-6">
+<a class="flex items-center gap-2 group text-nordic/60 hover:text-mosque transition-colors w-fit" href="#">
+<span class="material-icons text-xl group-hover:-translate-x-1 transition-transform">arrow_back</span>
+<span class="font-medium">Back to property details</span>
+</a>
+</div>
+<div class="w-full max-w-6xl bg-white dark:bg-[#162e2a] rounded-xl shadow-2xl shadow-mosque/5 overflow-hidden flex flex-col md:flex-row border border-slate-100 dark:border-slate-800">
+<div class="w-full md:w-5/12 bg-slate-50 dark:bg-[#112522] p-6 md:p-8 lg:p-10 flex flex-col gap-6 relative">
+<div class="absolute top-0 left-0 w-full h-48 bg-gradient-to-b from-mosque/5 to-transparent pointer-events-none"></div>
+<div class="relative group cursor-pointer overflow-hidden rounded-lg shadow-md aspect-[4/3]">
+<img alt="Modern minimalist villa exterior with pool" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfvG-i1KZzedVz-g45_cSnQZTN6AAynCK2CgpZ3l5DcgzTHztgy6JLYA8YAYH5ZN3R0dygJ4-pGit5nKdcd6pZYP9v8XYWGUzAcMG8L8JmSOBneI6yT6R_rTsn1My_Xw71nG09GQDtWVnXu9yOTUJHc1DMTrami3fIfCePjCoPKWtid6DzYrZ7_iu2z_GGW4QHCRZoAVqmAQ7CA2DUkCLlf-3DgQR4jB-saRAv17qKViJ3UpaDAw3g-5YDJdWErV2Ykp4HRl94_-A"/>
+<div class="absolute top-3 left-3 bg-white/90 dark:bg-black/80 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase text-mosque">
+                    For Sale
+                </div>
+</div>
+<div class="space-y-4 z-10">
+<div>
+<h2 class="text-2xl font-bold text-nordic dark:text-white leading-tight">Modern Villa in Beverly Hills</h2>
+<p class="text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-1 text-sm">
+<span class="material-icons text-base">location_on</span>
+                        1284 Sunset Blvd, Beverly Hills, CA
+                    </p>
+</div>
+<div class="flex items-center justify-between py-4 border-y border-slate-200 dark:border-slate-700">
+<div class="flex flex-col">
+<span class="text-xs text-slate-400 uppercase tracking-wider font-medium">Price</span>
+<span class="text-xl font-bold text-mosque">$4,500,000</span>
+</div>
+<div class="flex items-center gap-4 text-slate-600 dark:text-slate-300">
+<div class="flex flex-col items-center">
+<span class="material-icons text-slate-400">bed</span>
+<span class="text-xs font-medium">4 Beds</span>
+</div>
+<div class="w-px h-8 bg-slate-200 dark:bg-slate-700"></div>
+<div class="flex flex-col items-center">
+<span class="material-icons text-slate-400">shower</span>
+<span class="text-xs font-medium">3 Baths</span>
+</div>
+<div class="w-px h-8 bg-slate-200 dark:bg-slate-700"></div>
+<div class="flex flex-col items-center">
+<span class="material-icons text-slate-400">square_foot</span>
+<span class="text-xs font-medium">3,200 sqft</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3 pt-2">
+<img alt="Professional woman portrait smiling" class="w-12 h-12 rounded-full object-cover border-2 border-white dark:border-slate-700 shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjW8nnOPHp1gOZTOS7qhMHvipD0b7viW3jmd_eAxFO7faa8rI-l2bjqTkw5xsGNAAnbxLfoLrJwf86iz_rvrcWZ1PFCBbsJs6F9fVADumsgd1pH2AorRGRV9YWFsvenDLX89W1nX6Lmk8xN6BS-BGAypyNgxlEtcnDxTSovjH9JsrUcwKHPTLVfJpIjQE_c2pIKScAf2WlFi5sf861r5TKZaownHpiub2sbluHlfsR2sZFQCxs5Lgy6J78tn3e1OQ_hBGy1V0_ueE"/>
+<div>
+<p class="text-sm text-slate-500 dark:text-slate-400 font-medium">Hosted by</p>
+<p class="text-nordic dark:text-white font-semibold">Sarah Jenkins</p>
+</div>
+<button class="ml-auto p-2 text-mosque hover:bg-mosque/10 rounded-full transition-colors" title="Contact Agent">
+<span class="material-icons">chat_bubble_outline</span>
+</button>
+</div>
+</div>
+</div>
+<div class="w-full md:w-7/12 p-6 md:p-8 lg:p-10 flex flex-col justify-between">
+<div>
+<h1 class="text-3xl font-bold text-nordic dark:text-white mb-2">Schedule a Viewing</h1>
+<p class="text-slate-500 dark:text-slate-400 mb-8">Choose a date and time to tour the property in person.</p>
+<div class="mb-8">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-sm font-semibold text-nordic dark:text-white uppercase tracking-wider">October 2023</h3>
+<div class="flex gap-1">
+<button class="p-1 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 hover:text-mosque transition-colors">
+<span class="material-icons text-lg">chevron_left</span>
+</button>
+<button class="p-1 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 text-nordic dark:text-white hover:text-mosque transition-colors">
+<span class="material-icons text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-y-2 gap-x-1 text-center mb-6">
+<div class="text-xs font-medium text-slate-400 py-2">Mon</div>
+<div class="text-xs font-medium text-slate-400 py-2">Tue</div>
+<div class="text-xs font-medium text-slate-400 py-2">Wed</div>
+<div class="text-xs font-medium text-slate-400 py-2">Thu</div>
+<div class="text-xs font-medium text-slate-400 py-2">Fri</div>
+<div class="text-xs font-medium text-slate-400 py-2">Sat</div>
+<div class="text-xs font-medium text-slate-400 py-2">Sun</div>
+<button class="text-sm text-slate-300 dark:text-slate-600 py-2 rounded-lg cursor-not-allowed">28</button>
+<button class="text-sm text-slate-300 dark:text-slate-600 py-2 rounded-lg cursor-not-allowed">29</button>
+<button class="text-sm text-slate-300 dark:text-slate-600 py-2 rounded-lg cursor-not-allowed">30</button>
+<button class="text-sm text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 py-2 rounded-lg transition-colors">1</button>
+<button class="text-sm text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 py-2 rounded-lg transition-colors">2</button>
+<button class="text-sm text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 py-2 rounded-lg transition-colors">3</button>
+<button class="text-sm text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 py-2 rounded-lg transition-colors">4</button>
+<button class="text-sm text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 py-2 rounded-lg transition-colors">5</button>
+<button class="text-sm text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 py-2 rounded-lg transition-colors">6</button>
+<button class="text-sm text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 py-2 rounded-lg transition-colors">7</button>
+<button class="relative bg-mosque text-white font-semibold shadow-lg shadow-mosque/30 py-2 rounded-lg transform scale-105">
+                                8
+                                <span class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-white rounded-full"></span>
+</button>
+<button class="text-sm text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 py-2 rounded-lg transition-colors">9</button>
+<button class="text-sm text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 py-2 rounded-lg transition-colors">10</button>
+<button class="text-sm text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 py-2 rounded-lg transition-colors">11</button>
+</div>
+</div>
+<div class="mb-8">
+<h3 class="text-sm font-semibold text-nordic dark:text-white uppercase tracking-wider mb-4">Available Times</h3>
+<div class="grid grid-cols-3 sm:grid-cols-4 gap-3">
+<button class="border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 py-2 px-3 rounded-lg text-sm hover:border-mosque hover:text-mosque transition-all">
+                                09:00 AM
+                            </button>
+<button class="border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 py-2 px-3 rounded-lg text-sm hover:border-mosque hover:text-mosque transition-all">
+                                09:30 AM
+                            </button>
+<button class="bg-mosque/10 border border-mosque text-mosque font-medium py-2 px-3 rounded-lg text-sm shadow-sm">
+                                10:00 AM
+                            </button>
+<button class="border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 py-2 px-3 rounded-lg text-sm hover:border-mosque hover:text-mosque transition-all">
+                                10:30 AM
+                            </button>
+<button class="border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 py-2 px-3 rounded-lg text-sm hover:border-mosque hover:text-mosque transition-all">
+                                11:30 AM
+                            </button>
+<button class="border border-slate-200 dark:border-slate-700 text-slate-300 dark:text-slate-600 py-2 px-3 rounded-lg text-sm cursor-not-allowed opacity-50 decoration-slate-400 line-through">
+                                01:00 PM
+                            </button>
+<button class="border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 py-2 px-3 rounded-lg text-sm hover:border-mosque hover:text-mosque transition-all">
+                                02:00 PM
+                            </button>
+<button class="border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 py-2 px-3 rounded-lg text-sm hover:border-mosque hover:text-mosque transition-all">
+                                03:30 PM
+                            </button>
+</div>
+</div>
+<div class="mb-8">
+<label class="block text-sm font-semibold text-nordic dark:text-white uppercase tracking-wider mb-2" for="message">
+                            Message for the agent <span class="text-slate-400 font-normal normal-case ml-1">(Optional)</span>
+</label>
+<textarea class="w-full rounded-lg border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#112522] text-nordic dark:text-slate-200 placeholder:text-slate-400 focus:ring-1 focus:ring-mosque focus:border-mosque transition-shadow resize-none text-sm" id="message" placeholder="Any specific questions or requests?" rows="3"></textarea>
+</div>
+</div>
+<div class="pt-6 border-t border-slate-100 dark:border-slate-700 flex items-center justify-end gap-4">
+<button class="text-slate-500 dark:text-slate-400 hover:text-nordic dark:hover:text-white font-medium px-4 py-2 text-sm transition-colors">
+                        Cancel
+                </button>
+<button class="bg-mosque hover:bg-primary-dark text-white font-semibold py-3 px-8 rounded-lg shadow-lg shadow-mosque/20 transition-all hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 text-sm flex items-center gap-2">
+<span>Confirm Visit</span>
+<span class="material-icons text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<footer class="py-8 text-center text-nordic/40 dark:text-slate-600 text-xs">
+<div class="flex items-center justify-center gap-4 mb-4">
+<a class="hover:text-mosque transition-colors" href="#">Privacy Policy</a>
+<span class="w-1 h-1 bg-slate-300 rounded-full"></span>
+<a class="hover:text-mosque transition-colors" href="#">Terms of Service</a>
+<span class="w-1 h-1 bg-slate-300 rounded-full"></span>
+<a class="hover:text-mosque transition-colors" href="#">Support</a>
+</div>
+<p>© 2023 LuxeEstate. All rights reserved.</p>
+</footer>
+
+</body></html>

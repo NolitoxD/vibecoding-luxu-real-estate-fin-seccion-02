@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Favorites List Screen - Premium Real Estate</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    @font-face {
+        font-family: 'SF Pro Display';
+        src: url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff') format('woff');
+        font-weight: 400;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'SF Pro Display';
+        src: url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-medium-webfont.woff') format('woff');
+        font-weight: 500;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'SF Pro Display';
+        src: url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-semibold-webfont.woff') format('woff');
+        font-weight: 600;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'SF Pro Display';
+        src: url('https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-bold-webfont.woff') format('woff');
+        font-weight: 700;
+        font-style: normal;
+    }
+</style>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    nordic: "#19322F",
+                    mosque: "#006655",
+                    "mosque-dark": "#004d40",
+                    hintgreen: "#D9ECC8",
+                    clearday: "#EEF6F6",
+                    white: "#ffffff",
+                    slate: {
+                        50: '#f8fafc',
+                        100: '#f1f5f9',
+                        200: '#e2e8f0',
+                        300: '#cbd5e1',
+                        400: '#94a3b8',
+                        500: '#64748b',
+                        600: '#475569',
+                        700: '#334155',
+                        800: '#1e293b',
+                        900: '#0f172a',
+                    }
+                },
+                fontFamily: {
+                    "display": ["SF Pro Display", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica", "Arial", "sans-serif"]
+                },
+                borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+            },
+        },
+    }
+</script>
+<style>::-webkit-scrollbar {
+        width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: #cbd5e1;
+        border-radius: 20px;
+    }
+    .text-shadow-sm {
+        text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+</style>
+</head>
+<body class="bg-clearday font-display text-nordic min-h-screen transition-colors duration-300">
+<nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-nordic/10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between h-20 items-center">
+<div class="flex-shrink-0 flex items-center gap-2 cursor-pointer group">
+<div class="w-8 h-8 rounded bg-mosque flex items-center justify-center text-white group-hover:rotate-45 transition-transform duration-300">
+<span class="material-icons text-xl">apartment</span>
+</div>
+<span class="font-bold text-xl tracking-tight text-nordic">Luxe<span class="text-mosque">Estate</span></span>
+</div>
+<div class="hidden md:flex space-x-8 items-center">
+<a class="text-nordic/70 hover:text-mosque transition-colors text-sm font-medium" href="#">Buy</a>
+<a class="text-nordic/70 hover:text-mosque transition-colors text-sm font-medium" href="#">Rent</a>
+<a class="text-nordic/70 hover:text-mosque transition-colors text-sm font-medium" href="#">Sell</a>
+<a class="text-nordic font-medium text-sm border-b-2 border-mosque" href="#">Saved Homes</a>
+</div>
+<div class="flex items-center space-x-4">
+<button class="p-2 text-nordic/60 hover:text-mosque transition-colors">
+<span class="material-icons">search</span>
+</button>
+<button class="p-2 text-nordic/60 hover:text-mosque transition-colors relative">
+<span class="material-icons">notifications_none</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-mosque rounded-full"></span>
+</button>
+<div class="h-8 w-8 rounded-full bg-slate-200 overflow-hidden ring-2 ring-transparent hover:ring-mosque transition-all cursor-pointer">
+<img alt="User avatar profile picture" class="h-full w-full object-cover" data-alt="User avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbkDcRGakXQlhIqviFdBMKj4vxiO2b5_6wA8mZwkvMjgTNR74MkemV0EBFQxD6pjQzEFMw5rzEd4dI16_vfOpLCy9n3R2IIICOCrK8MBM-5J-C49q4yh8opEvb0mhl6ij977SYrFph_cUFJr9p40Eab3YFyWX1J8CY1Zf3VcWtWXothnFNWdV40nbGp0dpKG6vGA3DwRWcbTiBTMWqllhLnFiq6drzs-tgQ8P4HYJZ48MkGetx38bYp2Y6wnb70B5lcT6Gs4EdEuw"/>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<main class="pt-28 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+<div>
+<h1 class="text-3xl md:text-4xl font-bold text-nordic tracking-tight mb-2">Your Favorites</h1>
+<p class="text-nordic/70">You have 4 saved properties waiting for you.</p>
+</div>
+<div class="flex items-center space-x-3">
+<div class="relative group">
+<button class="flex items-center space-x-2 bg-white px-4 py-2.5 rounded-lg text-sm font-medium text-nordic shadow-sm hover:shadow-md transition-all border border-transparent hover:border-mosque/30">
+<span>Sort by: Date Added</span>
+<span class="material-icons text-lg">keyboard_arrow_down</span>
+</button>
+</div>
+<div class="flex bg-white rounded-lg p-1 shadow-sm">
+<button class="p-1.5 rounded text-mosque bg-hintgreen">
+<span class="material-icons text-xl">grid_view</span>
+</button>
+<button class="p-1.5 rounded text-nordic/40 hover:text-nordic/70">
+<span class="material-icons text-xl">view_list</span>
+</button>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
+<div class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-slate-100 flex flex-col h-full">
+<div class="relative h-64 overflow-hidden">
+<img alt="Modern white luxury villa with pool" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Modern villa exterior" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXOQNT51Cz2cPdTVGyr6DA9NmaizRJT_h-GpzTk043U9D4hotjpBSgVzGQJS89IeUQQm02p6F4tIoZA5ly5H32xJSyPNjt6Ru47JtGsLLkxA4g8nr1i8SQL1_DvRvS80MIv_JwWavbMeqZBMWVuWIEhli6Z_iX5Iof9X5fRJ13-FIkx7Olyn43SXE8eWTb1JXrZyT-KKsb8KED9SZM-Hm07NfNn8i2xxoejNDgbf31R4RrRv6f8S4wULTE5k2DByf1GulIeuJYhdU"/>
+<button class="absolute top-3 right-3 p-2 bg-white/90 backdrop-blur-sm rounded-full text-mosque hover:bg-mosque hover:text-white transition-colors shadow-sm z-10">
+<span class="material-icons text-xl block">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3 bg-nordic/90 backdrop-blur-md px-3 py-1 rounded-md">
+<span class="text-xs font-semibold text-white uppercase tracking-wider">New Listing</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-bold text-nordic">$1,250,000</h3>
+<span class="text-xs font-medium px-2 py-1 rounded bg-hintgreen text-mosque">For Sale</span>
+</div>
+<p class="text-nordic/70 text-sm mb-4 line-clamp-1">4502 Ocean Drive, Miami Beach, FL</p>
+<div class="flex items-center justify-between text-nordic/60 text-xs font-medium mb-6">
+<div class="flex items-center gap-1">
+<span class="material-icons text-mosque text-base">bed</span>
+<span>3 Beds</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-icons text-mosque text-base">bathtub</span>
+<span>2 Baths</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-icons text-mosque text-base">square_foot</span>
+<span>2,100 sqft</span>
+</div>
+</div>
+<div class="mt-auto">
+<button class="w-full py-2.5 rounded-lg border border-mosque text-mosque font-medium text-sm hover:bg-mosque hover:text-white transition-colors duration-300 flex items-center justify-center gap-2">
+<span>Book Visit</span>
+<span class="material-icons text-base">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-slate-100 flex flex-col h-full">
+<div class="relative h-64 overflow-hidden">
+<img alt="Bright minimalist apartment living room with large windows" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Modern apartment interior" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEzaDlaEwOb5ECNflF9po6pcbh6xxqDLw1ACjN1_-TU8zn5te1vWWyi2QojAegmlvnLdt2SeFNhwG4PEa71oQXK1mltPoAL8AJwDGD88iJhG7uz7Y69d-wvETAmwlceOjwi4DUiHMmY1AjGXJsNMAN-ukGHfPG5v4lKk7FOzopHLzxhh-UA_jeyzVRIw8_ZxB2Nmtx-a4ghEjl1MoqdLkXtRtSQB6rUK7VHU4T3iB3aqjkyNbQrmcbQZuuGnwZNfroicYC4jsTdzM"/>
+<button class="absolute top-3 right-3 p-2 bg-white/90 backdrop-blur-sm rounded-full text-mosque hover:bg-mosque hover:text-white transition-colors shadow-sm z-10">
+<span class="material-icons text-xl block">favorite</span>
+</button>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-bold text-nordic">$850,000</h3>
+<span class="text-xs font-medium px-2 py-1 rounded bg-hintgreen text-mosque">For Sale</span>
+</div>
+<p class="text-nordic/70 text-sm mb-4 line-clamp-1">88 Leonard St, New York, NY</p>
+<div class="flex items-center justify-between text-nordic/60 text-xs font-medium mb-6">
+<div class="flex items-center gap-1">
+<span class="material-icons text-mosque text-base">bed</span>
+<span>2 Beds</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-icons text-mosque text-base">bathtub</span>
+<span>2 Baths</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-icons text-mosque text-base">square_foot</span>
+<span>1,250 sqft</span>
+</div>
+</div>
+<div class="mt-auto">
+<button class="w-full py-2.5 rounded-lg border border-mosque text-mosque font-medium text-sm hover:bg-mosque hover:text-white transition-colors duration-300 flex items-center justify-center gap-2">
+<span>Book Visit</span>
+<span class="material-icons text-base">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-slate-100 flex flex-col h-full">
+<div class="relative h-64 overflow-hidden">
+<img alt="Modern house with dark wood siding surrounded by trees" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Countryside modern home" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4M_LEscGAiAHsBcCvimSItu37KUSVrg5wdWW2KmEoPAJpLPERpG1DXitxxRFxywtTw-JJbl1AdGHWnKxXb6e3APP_ZSHHMdgcXC7YHfqkXj-uwxSgH9AzC_eV5uXWWMDpFLK-EBedBs_bMfH9E2dZVOI8slg2Oiv-z9JmFlPPPqREZzSOKj1BBv-CL-pCwZFNWWRHHGjVaVsb10B5jIcRIfd87x5_Ca9NHReauVUQWmHBjogmwXsTmuwr-PAV3tjirbrTpereJT0"/>
+<button class="absolute top-3 right-3 p-2 bg-white/90 backdrop-blur-sm rounded-full text-mosque hover:bg-mosque hover:text-white transition-colors shadow-sm z-10">
+<span class="material-icons text-xl block">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3 bg-mosque/90 backdrop-blur-md px-3 py-1 rounded-md">
+<span class="text-xs font-semibold text-white uppercase tracking-wider">Price Drop</span>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<div class="flex flex-col">
+<h3 class="text-lg font-bold text-nordic">$2,100,000</h3>
+<span class="text-xs text-red-500 line-through opacity-60">$2,250,000</span>
+</div>
+<span class="text-xs font-medium px-2 py-1 rounded bg-hintgreen text-mosque">For Sale</span>
+</div>
+<p class="text-nordic/70 text-sm mb-4 line-clamp-1">12 Willow Creek Rd, Aspen, CO</p>
+<div class="flex items-center justify-between text-nordic/60 text-xs font-medium mb-6">
+<div class="flex items-center gap-1">
+<span class="material-icons text-mosque text-base">bed</span>
+<span>4 Beds</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-icons text-mosque text-base">bathtub</span>
+<span>3.5 Baths</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-icons text-mosque text-base">square_foot</span>
+<span>3,400 sqft</span>
+</div>
+</div>
+<div class="mt-auto">
+<button class="w-full py-2.5 rounded-lg border border-mosque text-mosque font-medium text-sm hover:bg-mosque hover:text-white transition-colors duration-300 flex items-center justify-center gap-2">
+<span>Book Visit</span>
+<span class="material-icons text-base">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-slate-100 flex flex-col h-full">
+<div class="relative h-64 overflow-hidden">
+<img alt="Industrial style loft with brick walls and large windows" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Industrial loft interior" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxieqVhvRgO_B67HJht1BhYDTK6fGmz5EFFk4WgRKVJ0WSu_V_9Lfnwub8ej3nuZmqcIxNAAG35g3nYKKWmLZ38IoS94eXKI4skOzNOJmoxUKfyGuMZQkWzTKHCNc9wF4Wrxp5dRVM9RuXhiztmRtky0y8D2SXxUf0XnUVNzQVYEo5-dt2VaMeh1BvEYqwHE7kB1NVNJS-OLymEhuvIO-Y1u6OuSqxLgQrg4v2f-X9VbvqccW-24BCbjNCAKh2SebDbKIfOasH2e8"/>
+<button class="absolute top-3 right-3 p-2 bg-white/90 backdrop-blur-sm rounded-full text-mosque hover:bg-mosque hover:text-white transition-colors shadow-sm z-10">
+<span class="material-icons text-xl block">favorite</span>
+</button>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<h3 class="text-lg font-bold text-nordic">$4,500/mo</h3>
+<span class="text-xs font-medium px-2 py-1 rounded bg-blue-50 text-blue-800">For Rent</span>
+</div>
+<p class="text-nordic/70 text-sm mb-4 line-clamp-1">742 Evergreen Terrace, Seattle, WA</p>
+<div class="flex items-center justify-between text-nordic/60 text-xs font-medium mb-6">
+<div class="flex items-center gap-1">
+<span class="material-icons text-mosque text-base">bed</span>
+<span>1 Bed</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-icons text-mosque text-base">bathtub</span>
+<span>1.5 Baths</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-icons text-mosque text-base">square_foot</span>
+<span>950 sqft</span>
+</div>
+</div>
+<div class="mt-auto">
+<button class="w-full py-2.5 rounded-lg border border-mosque text-mosque font-medium text-sm hover:bg-mosque hover:text-white transition-colors duration-300 flex items-center justify-center gap-2">
+<span>Schedule Tour</span>
+<span class="material-icons text-base">calendar_today</span>
+</button>
+</div>
+</div>
+</div>
+<div class="animate-pulse bg-white rounded-xl overflow-hidden shadow-sm border border-slate-100 flex flex-col h-full opacity-60">
+<div class="h-64 bg-slate-200 w-full"></div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-center mb-4">
+<div class="h-6 bg-slate-200 w-1/3 rounded"></div>
+<div class="h-5 bg-slate-200 w-16 rounded"></div>
+</div>
+<div class="h-4 bg-slate-200 w-2/3 rounded mb-6"></div>
+<div class="flex justify-between mb-8">
+<div class="h-4 bg-slate-200 w-12 rounded"></div>
+<div class="h-4 bg-slate-200 w-12 rounded"></div>
+<div class="h-4 bg-slate-200 w-12 rounded"></div>
+</div>
+<div class="mt-auto">
+<div class="h-10 bg-slate-200 w-full rounded-lg"></div>
+</div>
+</div>
+</div>
+<div class="group bg-hintgreen/30 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border-2 border-dashed border-mosque/30 hover:border-mosque flex flex-col h-full items-center justify-center min-h-[400px] cursor-pointer text-center p-6">
+<div class="w-16 h-16 rounded-full bg-hintgreen flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-icons text-mosque text-3xl">add</span>
+</div>
+<h3 class="text-xl font-bold text-nordic mb-2">Discover More</h3>
+<p class="text-nordic/70 text-sm mb-6 max-w-[200px]">Find more properties that match your lifestyle.</p>
+<button class="px-6 py-2.5 rounded-lg bg-mosque text-white font-medium text-sm shadow-lg shadow-mosque/30 hover:shadow-mosque/50 transition-all">
+                    Browse Listings
+                </button>
+</div>
+</div>
+</main>
+<footer class="bg-white mt-auto border-t border-nordic/10 py-8">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+<div class="text-nordic/60 text-sm mb-4 md:mb-0">
+                © 2023 LuxeEstate Inc. All rights reserved.
+            </div>
+<div class="flex space-x-6">
+<a class="text-nordic/60 hover:text-mosque transition-colors text-sm" href="#">Privacy</a>
+<a class="text-nordic/60 hover:text-mosque transition-colors text-sm" href="#">Terms</a>
+<a class="text-nordic/60 hover:text-mosque transition-colors text-sm" href="#">Support</a>
+</div>
+</div>
+</footer>
+
+</body></html>

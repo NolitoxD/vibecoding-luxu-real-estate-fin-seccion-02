@@ -1,7 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { getTranslation } from "@/i18n/server";
+import { createClient } from "@/lib/supabase/server";
 import LanguageSelector from "./LanguageSelector";
+import { signOut } from "@/app/actions/auth";
 
 interface NavbarProps {
   currentType?: string;
@@ -9,6 +11,21 @@ interface NavbarProps {
 
 export default async function Navbar({ currentType }: NavbarProps) {
   const { t } = await getTranslation();
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  let isAdmin = false;
+  if (user) {
+    const { data: roleData } = await supabase
+      .from("user_roles")
+      .select("role")
+      .eq("id", user.id)
+      .single();
+      
+    if (roleData?.role === "admin") {
+      isAdmin = true;
+    }
+  }
 
   const getLinkClass = (type?: string) => {
     const isActive = type ? currentType === type : !currentType;
@@ -60,6 +77,11 @@ export default async function Navbar({ currentType }: NavbarProps) {
             <Link href="#" className={getLinkClass("saved")}>
               {t("navbar.saved")}
             </Link>
+            {isAdmin && (
+              <Link href="/admin" className="text-mosque font-bold text-sm bg-mosque/10 hover:bg-mosque hover:text-white px-3 py-1.5 rounded-md transition-all">
+                Admin
+              </Link>
+            )}
           </div>
 
           {/* Actions */}
@@ -76,16 +98,40 @@ export default async function Navbar({ currentType }: NavbarProps) {
             </button>
 
             {/* Profile */}
-            <button aria-label="Profile" className="flex items-center gap-2 pl-2 border-l border-nordic/10 ml-2">
-              <div className="w-9 h-9 rounded-full bg-gray-200 overflow-hidden ring-2 ring-transparent hover:ring-mosque transition-all relative">
-                <Image
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAWhQZ663Bd08kmzjbOPmUk4UIxYooNONShMEFXLR-DtmVi6Oz-TiaY77SPwFk7g0OobkeZEOMvt6v29mSOD0Xm2g95WbBG3ZjWXmiABOUwGU0LOySRfVDo-JTXQ0-gtwjWxbmue0qDm91m-zEOEZwAW6iRFB1qC1bAU-wkjxm67Sbztq8w7srHkFT9bVEC86qG-FzhOBTomhAurNRmx9l8Yfqabk328NfdKuVLckgCdaPsNFE3yN65MeoRi05GA_gXIMwG4YDIeA"
-                  alt="Profile"
-                  fill
-                  className="object-cover"
-                />
+            {user ? (
+              <div className="flex items-center gap-3 pl-2 border-l border-nordic/10 ml-2">
+                <button aria-label="Profile" className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-200 overflow-hidden ring-2 ring-transparent hover:ring-mosque transition-all relative">
+                  {user.user_metadata?.avatar_url ? (
+                    <Image
+                      src={user.user_metadata.avatar_url}
+                      alt="Profile"
+                      fill
+                      className="object-cover"
+                      sizes="36px"
+                    />
+                  ) : (
+                    <svg className="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                    </svg>
+                  )}
+                </button>
+                <form action={signOut}>
+                  <button type="submit" className="text-sm font-medium text-nordic/70 hover:text-red-500 transition-colors hidden sm:block">
+                    {t("navbar.signOut")}
+                  </button>
+                  {/* Mobile icon equivalent or generic signout icon if extremely constrained */}
+                  <button type="submit" aria-label="Sign Out" className="sm:hidden text-nordic/70 hover:text-red-500 pt-1">
+                    <span className="material-icons text-[20px]">logout</span>
+                  </button>
+                </form>
               </div>
-            </button>
+            ) : (
+              <Link aria-label="Login" href="/login" className="flex items-center gap-2 pl-4 border-l border-nordic/10 ml-2">
+                <span className="text-nordic bg-mosque/10 hover:bg-mosque hover:text-white px-4 py-2 rounded-lg font-medium text-sm transition-all duration-300">
+                  {t("navbar.signIn")}
+                </span>
+              </Link>
+            )}
           </div>
         </div>
       </div>
@@ -108,6 +154,11 @@ export default async function Navbar({ currentType }: NavbarProps) {
           <Link href="#" className={getMobileLinkClass("saved")}>
             {t("navbar.saved")}
           </Link>
+          {isAdmin && (
+            <Link href="/admin" className="block px-3 py-2 rounded-md text-base font-bold text-mosque bg-mosque/10">
+              Admin Dashboard
+            </Link>
+          )}
         </div>
       </div>
     </nav>
