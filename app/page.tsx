@@ -119,6 +119,17 @@ export default async function Home({ searchParams }: HomePageProps) {
     agent: p.agent ?? undefined,
   }));
 
+  // Fetch saved property IDs for the logged-in user
+  const { data: { user } } = await supabase.auth.getUser();
+  let savedPropertyIds: string[] = [];
+  if (user) {
+    const { data: saved } = await supabase
+      .from('saved_properties')
+      .select('property_id')
+      .eq('user_id', user.id);
+    savedPropertyIds = (saved ?? []).map((s: { property_id: string }) => s.property_id);
+  }
+
   // Create a plain object for searchParams to avoid Promise issues in Client Components
   const plainParams: Record<string, string> = {};
   Object.entries(resolvedParams).forEach(([key, value]) => {
@@ -136,6 +147,8 @@ export default async function Home({ searchParams }: HomePageProps) {
           totalCount={count ?? 0}
           searchParams={plainParams}
           currentPage={currentPage}
+          savedPropertyIds={savedPropertyIds}
+          isLoggedIn={!!user}
         />
       </main>
     </>

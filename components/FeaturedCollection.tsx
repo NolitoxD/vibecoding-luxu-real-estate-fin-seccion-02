@@ -13,6 +13,7 @@ const FeaturedCollection = async ({
 }: FeaturedCollectionProps) => {
   const supabase = await createClient();
   const { t } = await getTranslation();
+  const { data: { user } } = await supabase.auth.getUser();
 
   const { data: properties } = await supabase
     .from("properties")
@@ -69,7 +70,7 @@ const FeaturedCollection = async ({
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {collections.map((collection) => (
-          <CollectionCard key={collection.id} collection={collection} />
+          <CollectionCard key={collection.id} collection={collection} isLoggedIn={!!user} />
         ))}
       </div>
     </section>

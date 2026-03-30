@@ -5,9 +5,10 @@ import FavoriteButton from "./FavoriteButton";
 
 interface CollectionCardProps {
   collection: Collection;
+  isLoggedIn?: boolean;
 }
 
-const CollectionCard = ({ collection }: CollectionCardProps) => {
+const CollectionCard = ({ collection, isLoggedIn = false }: CollectionCardProps) => {
   return (
     <Link href={`/properties/${collection.slug}`} className="block h-full">
       <div className="group relative rounded-xl overflow-hidden shadow-soft bg-white cursor-pointer h-full">
@@ -25,7 +26,7 @@ const CollectionCard = ({ collection }: CollectionCardProps) => {
             {collection.tag}
           </div>
 
-          <FavoriteButton />
+          <FavoriteButton propertyId={collection.id} isLoggedIn={isLoggedIn} />
           {/* Gradient Overlay */}
           <div className="absolute bottom-0 inset-x-0 h-1/2 bg-linear-to-t from-black/60 to-transparent opacity-60"></div>
         </div>

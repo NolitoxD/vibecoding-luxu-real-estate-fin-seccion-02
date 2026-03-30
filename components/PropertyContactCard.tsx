@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { Property } from "../types/property";
 import { getTranslation } from "@/i18n/server";
+import { createClient } from "@/lib/supabase/server";
+import ScheduleVisitModal from "./ui/ScheduleVisitModal";
 
 interface PropertyContactCardProps {
   property: Property;
@@ -10,6 +12,9 @@ export default async function PropertyContactCard({
   property,
 }: PropertyContactCardProps) {
   const { t } = await getTranslation();
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
   const { price, location, type, agent } = property;
 
   const formattedPrice = new Intl.NumberFormat("en-US", {
@@ -73,12 +78,12 @@ export default async function PropertyContactCard({
 
         {/* CTA buttons */}
         <div className="space-y-3">
-          <button className="w-full bg-mosque hover:bg-[#005544] text-white py-4 px-6 rounded-lg font-medium transition-all shadow-lg shadow-mosque/20 flex items-center justify-center gap-2 group">
-            <span className="material-icons text-xl group-hover:scale-110 transition-transform">
-              calendar_today
-            </span>
-            {t("property_details.schedule_visit")}
-          </button>
+          <ScheduleVisitModal
+            propertyId={property.id}
+            propertyTitle={property.title}
+            isLoggedIn={!!user}
+            label={t("property_details.schedule_visit")}
+          />
           <button className="w-full bg-transparent border border-nordic/10 hover:border-mosque text-nordic/80 hover:text-mosque py-4 px-6 rounded-lg font-medium transition-all flex items-center justify-center gap-2">
             <span className="material-icons text-xl">mail_outline</span>
             {t("property_details.contact_agent")}

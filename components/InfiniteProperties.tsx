@@ -16,6 +16,8 @@ interface InfinitePropertiesProps {
   totalCount: number;
   searchParams: Record<string, string>;
   translations: InfinitePropertiesTranslations;
+  savedPropertyIds?: string[];
+  isLoggedIn?: boolean;
 }
 
 const PAGE_SIZE = 8;
@@ -25,6 +27,8 @@ export default function InfiniteProperties({
   totalCount,
   searchParams,
   translations,
+  savedPropertyIds = [],
+  isLoggedIn = false,
 }: InfinitePropertiesProps) {
   const [properties, setProperties] = useState<Property[]>(initialProperties);
   const [loadedCount, setLoadedCount] = useState(initialProperties.length);
@@ -92,6 +96,8 @@ export default function InfiniteProperties({
             key={property.id}
             property={property}
             labels={translations.cardLabels}
+            isFavorite={savedPropertyIds.includes(property.id)}
+            isLoggedIn={isLoggedIn}
           />
         ))}
       </div>

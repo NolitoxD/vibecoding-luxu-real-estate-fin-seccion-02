@@ -13,9 +13,11 @@ export interface PropertyCardLabels {
 interface PropertyCardProps {
   property: Property;
   labels: PropertyCardLabels;
+  isFavorite?: boolean;
+  isLoggedIn?: boolean;
 }
 
-export default function PropertyCard({ property, labels }: PropertyCardProps) {
+export default function PropertyCard({ property, labels, isFavorite, isLoggedIn }: PropertyCardProps) {
   return (
     <Link href={`/properties/${property.slug}`} className="block h-full">
       <article className="bg-white rounded-xl overflow-hidden shadow-card hover:shadow-soft transition-all duration-300 group cursor-pointer h-full flex flex-col">
@@ -33,7 +35,11 @@ export default function PropertyCard({ property, labels }: PropertyCardProps) {
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           />
 
-          <FavoriteButton />
+          <FavoriteButton 
+            propertyId={property.id}
+            initialFavorite={isFavorite}
+            isLoggedIn={isLoggedIn}
+          />
 
           {/* Type Tag */}
           <div

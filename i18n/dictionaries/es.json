@@ -117,5 +117,11 @@
     "view_on_maps": "Ver en Mapas ↗",
     "footer_text": "© 2025 LuxeEstate Inc. Todos los derechos reservados.",
     "property_not_found": "Propiedad no encontrada"
+  },
+  "profile": {
+    "title": "Mi Perfil",
+    "saved": "Propiedades Guardadas",
+    "visits": "Visitas Programadas",
+    "settings": "Configuración"
   }
 }

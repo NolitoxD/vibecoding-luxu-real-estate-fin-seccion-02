@@ -9,6 +9,8 @@ interface NewInMarketProps {
   totalCount: number;
   searchParams: Record<string, string>;
   currentPage: number;
+  savedPropertyIds?: string[];
+  isLoggedIn?: boolean;
 }
 
 const NewInMarket = async ({
@@ -16,6 +18,8 @@ const NewInMarket = async ({
   totalCount,
   searchParams,
   currentPage,
+  savedPropertyIds = [],
+  isLoggedIn = false,
 }: NewInMarketProps) => {
   const { t } = await getTranslation();
   const currentType = searchParams.type;
@@ -90,6 +94,8 @@ const NewInMarket = async ({
           initialProperties={properties}
           totalCount={totalCount}
           searchParams={searchParams}
+          savedPropertyIds={savedPropertyIds}
+          isLoggedIn={isLoggedIn}
           translations={{
             loading: t("common.loading"),
             endOfList: t("common.end_of_list"),
