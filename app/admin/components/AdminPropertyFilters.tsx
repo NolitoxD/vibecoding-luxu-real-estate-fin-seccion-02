@@ -92,16 +92,6 @@ export default function AdminPropertyFilters() {
           </div>
         )}
       </div>
-
-      <button
-        type="button"
-        className="flex items-center gap-2 px-4 py-2 bg-emerald-800 text-white rounded-lg text-sm font-medium hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition-colors whitespace-nowrap"
-      >
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-        </svg>
-        Add New Property
-      </button>
     </div>
   );
 }

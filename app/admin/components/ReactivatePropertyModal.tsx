@@ -2,9 +2,9 @@
 
 import { useState, useTransition, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { deleteProperty } from '@/lib/actions/admin';
+import { reactivateProperty } from '@/lib/actions/admin';
 
-export default function DeletePropertyModal({
+export default function ReactivatePropertyModal({
   propertyId,
   propertyTitle,
   onClose,
@@ -24,14 +24,14 @@ export default function DeletePropertyModal({
     return () => clearTimeout(timer);
   }, []);
 
-  const handleDeactivate = () => {
+  const handleReactivate = () => {
     setError('');
     startTransition(async () => {
       try {
-        await deleteProperty(propertyId);
+        await reactivateProperty(propertyId);
         onClose();
       } catch (err: unknown) {
-        setError(err instanceof Error ? err.message : 'Error deactivating property');
+        setError(err instanceof Error ? err.message : 'Error reactivating property');
       }
     });
   };
@@ -47,14 +47,14 @@ export default function DeletePropertyModal({
         >
           ✕
         </button>
-        
+
         <div className="mb-8">
           <h3 className="text-xl font-semibold text-gray-900 mb-3">
-            Deactivate Property
+            Reactivate Property
           </h3>
           <p className="text-sm text-gray-600 leading-relaxed">
-            Are you sure you want to deactivate <span className="font-semibold text-gray-900">{propertyTitle}</span>? 
-            The property will be hidden from the public listing but can be reactivated later from the admin panel.
+            Are you sure you want to reactivate <span className="font-semibold text-gray-900">{propertyTitle}</span>? 
+            The property will become visible again in the public listing.
           </p>
         </div>
 
@@ -71,11 +71,11 @@ export default function DeletePropertyModal({
           </button>
           <button
             type="button"
-            onClick={handleDeactivate}
+            onClick={handleReactivate}
             disabled={isPending}
-            className="px-4 py-2 text-sm font-medium text-white bg-orange-600 rounded-md hover:bg-orange-700 disabled:opacity-50"
+            className="px-4 py-2 text-sm font-medium text-white bg-emerald-600 rounded-md hover:bg-emerald-700 disabled:opacity-50"
           >
-            {isPending ? 'Deactivating...' : 'Deactivate'}
+            {isPending ? 'Reactivating...' : 'Reactivate'}
           </button>
         </div>
       </div>

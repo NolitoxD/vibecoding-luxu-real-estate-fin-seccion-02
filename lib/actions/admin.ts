@@ -46,10 +46,28 @@ export async function deleteProperty(propertyId: string) {
   const { data: roleData } = await supabase.from('user_roles').select('role').eq('id', user.id).single();
   if (!roleData || roleData.role !== 'admin') throw new Error('Forbidden: You do not have permission to perform this action');
 
-  const { error } = await supabase.from('properties').delete().eq('id', propertyId);
-  if (error) throw new Error(error.message || 'Failed to delete property');
+  // Soft delete: deactivate instead of permanently removing the row
+  const { error } = await supabase.from('properties').update({ is_active: false }).eq('id', propertyId);
+  if (error) throw new Error(error.message || 'Failed to deactivate property');
 
   revalidatePath('/admin');
+  revalidatePath('/');
+}
+
+export async function reactivateProperty(propertyId: string) {
+  const supabase = await createClient();
+
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error('Unauthorized');
+
+  const { data: roleData } = await supabase.from('user_roles').select('role').eq('id', user.id).single();
+  if (!roleData || roleData.role !== 'admin') throw new Error('Forbidden: You do not have permission to perform this action');
+
+  const { error } = await supabase.from('properties').update({ is_active: true }).eq('id', propertyId);
+  if (error) throw new Error(error.message || 'Failed to reactivate property');
+
+  revalidatePath('/admin');
+  revalidatePath('/');
 }
 
 export async function updateProperty(propertyId: string, data: Partial<Property>) {
@@ -61,8 +79,55 @@ export async function updateProperty(propertyId: string, data: Partial<Property>
   const { data: roleData } = await supabase.from('user_roles').select('role').eq('id', user.id).single();
   if (!roleData || roleData.role !== 'admin') throw new Error('Forbidden: You do not have permission to perform this action');
 
-  const { error } = await supabase.from('properties').update(data).eq('id', propertyId);
+  const { error } = await supabase.from('properties').update({
+    title: data.title,
+    price: data.price,
+    type: data.type,
+    status: data.status,
+    description: data.description,
+    sqft: data.sqft,
+    beds: data.beds,
+    baths: data.baths,
+    garage: data.garage,
+    amenities: data.amenities,
+    location: data.location,
+    images: data.images,
+  }).eq('id', propertyId);
+
   if (error) throw new Error(error.message || 'Failed to update property');
+
+  revalidatePath('/admin');
+}
+
+export async function createProperty(data: Partial<Property>) {
+  const supabase = await createClient();
+  
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error('Unauthorized');
+
+  const { data: roleData } = await supabase.from('user_roles').select('role').eq('id', user.id).single();
+  if (!roleData || roleData.role !== 'admin') throw new Error('Forbidden: You do not have permission to perform this action');
+
+  const slug = data.title?.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '') || 'new-property';
+
+  const { error } = await supabase.from('properties').insert({
+    slug: slug,
+    title: data.title,
+    price: data.price,
+    type: data.type || 'sale',
+    status: data.status || 'active',
+    description: data.description,
+    sqft: data.sqft || 0,
+    beds: data.beds || 0,
+    baths: data.baths || 0,
+    garage: data.garage || 0,
+    amenities: data.amenities || [],
+    location: data.location || '',
+    images: data.images || [],
+    is_new: true,
+  });
+
+  if (error) throw new Error(error.message || 'Failed to create property');
 
   revalidatePath('/admin');
 }

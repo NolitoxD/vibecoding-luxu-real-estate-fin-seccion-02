@@ -18,6 +18,7 @@ const FeaturedCollection = async ({
     .from("properties")
     .select("*")
     .eq("is_featured", true)
+    .eq("is_active", true)
     .limit(2);
 
   const collections: Collection[] = (properties || []).map((p) => ({

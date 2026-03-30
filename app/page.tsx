@@ -60,7 +60,7 @@ export default async function Home({ searchParams }: HomePageProps) {
 
   const supabase = await createClient();
 
-  let query = supabase.from("properties").select("*", { count: "exact" });
+  let query = supabase.from("properties").select("*", { count: "exact" }).eq("is_active", true);
 
   // Apply filters
   if (search) {

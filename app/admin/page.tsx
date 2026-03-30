@@ -29,12 +29,14 @@ export default async function AdminPropertiesPage(props: { searchParams: SearchP
   const { count: activeProperties } = await supabase
     .from('properties')
     .select('*', { count: 'exact', head: true })
-    .eq('status', 'active');
+    .eq('status', 'active')
+    .eq('is_active', true);
     
   const { count: pendingSale } = await supabase
     .from('properties')
     .select('*', { count: 'exact', head: true })
-    .eq('status', 'pending');
+    .eq('status', 'pending')
+    .eq('is_active', true);
 
   // Fetch paginated and filtered properties
   let query = supabase
@@ -58,7 +60,7 @@ export default async function AdminPropertiesPage(props: { searchParams: SearchP
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h2 className="text-2xl font-semibold text-gray-800">My Properties</h2>
           <p className="text-sm text-gray-500">Manage your portfolio and track performance.</p>
@@ -66,6 +68,10 @@ export default async function AdminPropertiesPage(props: { searchParams: SearchP
         <div className="flex items-center gap-4 w-full sm:w-auto">
           <AdminPropertySearch />
           <AdminPropertyFilters />
+          <Link href="/admin/properties/new" className="px-5 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-medium shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-2 text-sm whitespace-nowrap">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
+            Add New Property
+          </Link>
         </div>
       </div>
       
@@ -112,8 +118,10 @@ export default async function AdminPropertiesPage(props: { searchParams: SearchP
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {properties?.map((property) => (
-                <tr key={property.id} className="hover:bg-gray-50 transition-colors">
+              {properties?.map((property) => {
+                const isInactive = property.is_active === false;
+                return (
+                <tr key={property.id} className={`hover:bg-gray-50 transition-colors${isInactive ? ' opacity-60' : ''}`}>
                   <td className="px-6 py-4">
                     <div className="flex items-center">
                       <div className="flex-shrink-0 h-16 w-24 relative rounded-lg overflow-hidden bg-gray-100">
@@ -145,18 +153,26 @@ export default async function AdminPropertiesPage(props: { searchParams: SearchP
                     <div className="text-xs text-gray-500 mt-0.5 capitalize">{property.type}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border border-gray-200 bg-gray-50 text-gray-700 capitalize">
-                      <span className={`w-1.5 h-1.5 rounded-full ${
-                        property.status === 'active' ? 'bg-green-500' : property.status === 'pending' ? 'bg-orange-500' : 'bg-gray-400'
-                      }`}></span>
-                      {property.status || 'Standard'}
-                    </span>
+                    {isInactive ? (
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border border-red-200 bg-red-50 text-red-600">
+                        <span className="w-1.5 h-1.5 rounded-full bg-red-400"></span>
+                        Inactive
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border border-gray-200 bg-gray-50 text-gray-700 capitalize">
+                        <span className={`w-1.5 h-1.5 rounded-full ${
+                          property.status === 'active' ? 'bg-green-500' : property.status === 'pending' ? 'bg-orange-500' : 'bg-gray-400'
+                        }`}></span>
+                        {property.status || 'Standard'}
+                      </span>
+                    )}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                     <PropertyRowActions property={property} />
                   </td>
                 </tr>
-              ))}
+                );
+              })}
               {(!properties || properties.length === 0) && (
                 <tr>
                   <td colSpan={4} className="px-6 py-12 text-center text-gray-500">

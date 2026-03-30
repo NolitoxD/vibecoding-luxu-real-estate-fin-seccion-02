@@ -19,6 +19,7 @@ export interface Property {
   garage?: number;
   type: PropertyType;
   status?: 'active' | 'pending' | 'sold';
+  is_active?: boolean;
   is_new: boolean;
   created_at: string;
   is_featured?: boolean;
